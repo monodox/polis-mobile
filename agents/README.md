@@ -31,12 +31,25 @@ cd agents
 npm install
 ```
 
-2. Configure AWS credentials for Amazon Bedrock:
+2. Configure environment variables in the root `.env.local` file:
 ```bash
-export AWS_ACCESS_KEY_ID=your_key
-export AWS_SECRET_ACCESS_KEY=your_secret
-export AWS_REGION=us-east-1
+# Copy from root .env.example
+cp ../.env.example ../.env.local
+
+# Edit .env.local with your AWS credentials
+# The agents will automatically read from the root .env.local
 ```
+
+Required environment variables:
+- `AWS_ACCESS_KEY_ID` - Your AWS access key
+- `AWS_SECRET_ACCESS_KEY` - Your AWS secret key
+- `AWS_REGION` - AWS region (default: us-east-1)
+
+Optional environment variables:
+- `NOVA_PRO_MODEL_ID` - Override Nova Pro model ID
+- `NOVA_SONIC_MODEL_ID` - Override Nova Sonic 2 model ID
+- `NOVA_ACT_MODEL_ID` - Override Nova Act model ID
+- `MAX_ITERATIONS`, `TIMEOUT_MS`, `MAX_MESSAGES` - Agent behavior tuning
 
 Note: Nova Act is only available in `us-east-1` region.
 

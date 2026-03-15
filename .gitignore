@@ -25,6 +25,20 @@ build/
 .env.*.local
 !.env.example
 
+# Agents - Node.js/TypeScript
+agents/node_modules/
+agents/dist/
+agents/*.js
+agents/*.js.map
+agents/*.d.ts
+agents/*.d.ts.map
+agents/**/*.js
+agents/**/*.js.map
+agents/**/*.d.ts
+agents/**/*.d.ts.map
+!agents/**/*.ts
+agents/package-lock.json
+
 # Misc
 *.log
 *.tmp

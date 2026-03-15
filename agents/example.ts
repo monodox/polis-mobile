@@ -1,3 +1,6 @@
+// Load environment variables from root .env.local
+import './load-env.js';
+
 import { PolisOrchestrator } from './index.js';
 import type { AgentContext } from './shared/types.js';
 
