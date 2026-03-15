@@ -1,0 +1,9 @@
+{
+  "name": "Polis",
+  "short_name": "Polis",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2196f3",
+  "description": "Polis mobile Flutter app"
+}
