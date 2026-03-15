@@ -9,64 +9,32 @@ class AgentsPage extends StatelessWidget {
     return AppNavigationScaffold(
       title: 'Agents',
       currentIndex: 3,
-      child: ListView(
-        padding: const EdgeInsets.all(16),
-        children: const [
-          Text(
-            'Displays the internal AI agents and how they process and respond to user requests.',
+      child: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(24),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                Icons.hub_outlined,
+                size: 64,
+                color: Theme.of(context).colorScheme.primary.withOpacity(0.5),
+              ),
+              const SizedBox(height: 16),
+              Text(
+                'AI Agents',
+                style: Theme.of(context).textTheme.headlineSmall,
+              ),
+              const SizedBox(height: 8),
+              Text(
+                'Agent status and information will appear here',
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
+                    ),
+                textAlign: TextAlign.center,
+              ),
+            ],
           ),
-          SizedBox(height: 16),
-          _AgentCard(
-            title: 'Intent Agent',
-            status: 'Active',
-            description: 'Classifies what service or question the user is asking about.',
-          ),
-          _AgentCard(
-            title: 'Knowledge Agent',
-            status: 'Active',
-            description: 'Finds relevant government service guidance and supporting information.',
-          ),
-          _AgentCard(
-            title: 'Response Agent',
-            status: 'Ready',
-            description: 'Transforms results into a simple, step-by-step explanation for the user.',
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _AgentCard extends StatelessWidget {
-  const _AgentCard({
-    required this.title,
-    required this.status,
-    required this.description,
-  });
-
-  final String title;
-  final String status;
-  final String description;
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      margin: const EdgeInsets.only(bottom: 12),
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(title, style: Theme.of(context).textTheme.titleMedium),
-                Chip(label: Text(status)),
-              ],
-            ),
-            const SizedBox(height: 8),
-            Text(description),
-          ],
         ),
       ),
     );

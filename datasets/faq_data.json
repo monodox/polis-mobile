@@ -1,0 +1,26 @@
+[
+  {
+    "question": "How long does passport renewal take?",
+    "answer": "Standard passport renewal takes 6-8 weeks. Expedited service (additional $60) takes 2-3 weeks. For urgent travel within 14 days, you can make an appointment at a passport agency for same-day service.",
+    "category": "passport",
+    "tags": ["timeline", "processing", "expedited"]
+  },
+  {
+    "question": "Can I renew my passport online?",
+    "answer": "Currently, you cannot complete the entire renewal process online. However, you can fill out Form DS-82 online, then print and mail it with your documents. Online renewal is being piloted and may be available soon.",
+    "category": "passport",
+    "tags": ["online", "digital", "process"]
+  },
+  {
+    "question": "What if my passport is damaged?",
+    "answer": "If your passport is damaged, you cannot use the standard renewal process. You'll need to apply for a new passport using Form DS-11 and appear in person at an acceptance facility.",
+    "category": "passport",
+    "tags": ["damaged", "replacement", "new application"]
+  },
+  {
+    "question": "How much does a driver's license cost?",
+    "answer": "Driver's license fees vary by state, typically ranging from $35 to $90. Some states charge additional fees for written tests, road tests, or enhanced licenses. Check your state's DMV website for exact pricing.",
+    "category": "drivers_license",
+    "tags": ["cost", "fees", "pricing"]
+  }
+]

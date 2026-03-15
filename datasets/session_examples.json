@@ -1,0 +1,33 @@
+[
+  {
+    "sessionId": "session_001",
+    "userId": "user_123",
+    "slug": "morning-passport-1503",
+    "startTime": "2024-03-15T09:30:00Z",
+    "endTime": "2024-03-15T09:45:00Z",
+    "messageCount": 8,
+    "resolved": true,
+    "messages": [
+      {
+        "role": "user",
+        "content": "Hi, I need to renew my passport",
+        "timestamp": "2024-03-15T09:30:15Z"
+      },
+      {
+        "role": "assistant",
+        "content": "I'd be happy to help you renew your passport. To get started, I need to know: Is your current passport undamaged and was it issued within the last 15 years?",
+        "timestamp": "2024-03-15T09:30:18Z"
+      },
+      {
+        "role": "user",
+        "content": "Yes, I got it 8 years ago and it's in good condition",
+        "timestamp": "2024-03-15T09:31:02Z"
+      },
+      {
+        "role": "assistant",
+        "content": "Perfect! You're eligible for renewal by mail. You'll need to complete Form DS-82, provide a recent passport photo, your current passport, and payment of $130. Would you like me to walk you through each step?",
+        "timestamp": "2024-03-15T09:31:05Z"
+      }
+    ]
+  }
+]

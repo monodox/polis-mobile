@@ -6,11 +6,13 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
 -- Sessions table (conversation sessions)
 CREATE TABLE sessions (
-  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-  user_id UUID NOT NULL,
-  title TEXT NOT NULL,
+  id TEXT PRIMARY KEY,
+  user_id TEXT NOT NULL,
+  slug TEXT NOT NULL,
+  title TEXT,
   description TEXT,
   language TEXT DEFAULT 'en',
+  last_message_at TIMESTAMP WITH TIME ZONE,
   created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
   updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
@@ -18,8 +20,8 @@ CREATE TABLE sessions (
 -- Messages table (chat messages)
 CREATE TABLE messages (
   id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
-  session_id UUID REFERENCES sessions(id) ON DELETE CASCADE NOT NULL,
-  user_id UUID NOT NULL,
+  session_id TEXT REFERENCES sessions(id) ON DELETE CASCADE NOT NULL,
+  user_id TEXT,
   role TEXT NOT NULL CHECK (role IN ('user', 'assistant', 'system')),
   content TEXT NOT NULL,
   metadata JSONB,
@@ -62,6 +64,7 @@ CREATE TABLE service_requests (
 -- Indexes for performance
 CREATE INDEX idx_sessions_user_id ON sessions(user_id);
 CREATE INDEX idx_sessions_created_at ON sessions(created_at DESC);
+CREATE INDEX idx_sessions_slug ON sessions(slug);
 CREATE INDEX idx_messages_session_id ON messages(session_id);
 CREATE INDEX idx_messages_created_at ON messages(created_at);
 CREATE INDEX idx_service_requests_user_id ON service_requests(user_id);
@@ -77,19 +80,19 @@ ALTER TABLE agents ENABLE ROW LEVEL SECURITY;
 -- Sessions RLS Policies
 CREATE POLICY "Users can view own sessions"
   ON sessions FOR SELECT
-  USING (auth.uid() = user_id);
+  USING (user_id = current_setting('request.jwt.claims', true)::json->>'sub' OR user_id = 'anonymous');
 
 CREATE POLICY "Users can create own sessions"
   ON sessions FOR INSERT
-  WITH CHECK (auth.uid() = user_id);
+  WITH CHECK (user_id = current_setting('request.jwt.claims', true)::json->>'sub' OR user_id = 'anonymous');
 
 CREATE POLICY "Users can update own sessions"
   ON sessions FOR UPDATE
-  USING (auth.uid() = user_id);
+  USING (user_id = current_setting('request.jwt.claims', true)::json->>'sub' OR user_id = 'anonymous');
 
 CREATE POLICY "Users can delete own sessions"
   ON sessions FOR DELETE
-  USING (auth.uid() = user_id);
+  USING (user_id = current_setting('request.jwt.claims', true)::json->>'sub' OR user_id = 'anonymous');
 
 -- Messages RLS Policies
 CREATE POLICY "Users can view messages in own sessions"
@@ -98,7 +101,7 @@ CREATE POLICY "Users can view messages in own sessions"
     EXISTS (
       SELECT 1 FROM sessions
       WHERE sessions.id = messages.session_id
-      AND sessions.user_id = auth.uid()
+      AND (sessions.user_id = current_setting('request.jwt.claims', true)::json->>'sub' OR sessions.user_id = 'anonymous')
     )
   );
 
@@ -108,7 +111,7 @@ CREATE POLICY "Users can create messages in own sessions"
     EXISTS (
       SELECT 1 FROM sessions
       WHERE sessions.id = messages.session_id
-      AND sessions.user_id = auth.uid()
+      AND (sessions.user_id = current_setting('request.jwt.claims', true)::json->>'sub' OR sessions.user_id = 'anonymous')
     )
   );
 

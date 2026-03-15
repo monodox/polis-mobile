@@ -52,6 +52,41 @@ class AppNavigationScaffold extends StatelessWidget {
     Navigator.pushReplacementNamed(context, _destinations[index].route);
   }
 
+  Widget _buildLogo(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      height: 56, // Match AppBar height
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      alignment: Alignment.centerLeft,
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Container(
+            width: 32,
+            height: 32,
+            decoration: BoxDecoration(
+              color: const Color(0xFF2563EB),
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: const Icon(
+              Icons.account_balance,
+              color: Colors.white,
+              size: 20,
+            ),
+          ),
+          const SizedBox(width: 12),
+          const Text(
+            'Polis',
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
@@ -61,8 +96,33 @@ class AppNavigationScaffold extends StatelessWidget {
 
         if (mobile) {
           return Scaffold(
-            appBar: AppBar(title: Text(title)),
-            body: SafeArea(child: child),
+            appBar: AppBar(
+              title: Row(
+                children: [
+                  Container(
+                    width: 28,
+                    height: 28,
+                    decoration: BoxDecoration(
+                      color: const Color(0xFF2563EB),
+                      borderRadius: BorderRadius.circular(6),
+                    ),
+                    child: const Icon(
+                      Icons.account_balance,
+                      color: Colors.white,
+                      size: 18,
+                    ),
+                  ),
+                  const SizedBox(width: 12),
+                  Text(title),
+                ],
+              ),
+            ),
+            body: SafeArea(
+              child: AnimatedSwitcher(
+                duration: const Duration(milliseconds: 300),
+                child: child,
+              ),
+            ),
             bottomNavigationBar: NavigationBar(
               selectedIndex: currentIndex,
               onDestinationSelected: (index) =>
@@ -82,32 +142,57 @@ class AppNavigationScaffold extends StatelessWidget {
 
         if (tablet) {
           return Scaffold(
-            appBar: AppBar(title: Text(title)),
+            appBar: AppBar(
+              title: Row(
+                children: [
+                  Container(
+                    width: 28,
+                    height: 28,
+                    decoration: BoxDecoration(
+                      color: const Color(0xFF2563EB),
+                      borderRadius: BorderRadius.circular(6),
+                    ),
+                    child: const Icon(
+                      Icons.account_balance,
+                      color: Colors.white,
+                      size: 18,
+                    ),
+                  ),
+                  const SizedBox(width: 12),
+                  Text(title),
+                ],
+              ),
+            ),
             drawer: Drawer(
               child: SafeArea(
-                child: ListView(
+                child: Column(
                   children: [
-                    const ListTile(
-                      title: Text('Polis'),
-                      subtitle: Text('Navigation'),
+                    _buildLogo(context),
+                    Divider(
+                      height: 1,
+                      thickness: 1,
+                      color: Theme.of(context).dividerColor,
                     ),
-                    const Divider(height: 1),
-                    ...List.generate(_destinations.length, (index) {
-                      final destination = _destinations[index];
-                      return ListTile(
-                        leading: Icon(
-                          index == currentIndex
-                              ? destination.selectedIcon
-                              : destination.icon,
-                        ),
-                        title: Text(destination.label),
-                        selected: index == currentIndex,
-                        onTap: () {
-                          Navigator.pop(context);
-                          _onSelectDestination(context, index);
-                        },
-                      );
-                    }),
+                    Expanded(
+                      child: ListView(
+                        children: List.generate(_destinations.length, (index) {
+                          final destination = _destinations[index];
+                          return ListTile(
+                            leading: Icon(
+                              index == currentIndex
+                                  ? destination.selectedIcon
+                                  : destination.icon,
+                            ),
+                            title: Text(destination.label),
+                            selected: index == currentIndex,
+                            onTap: () {
+                              Navigator.pop(context);
+                              _onSelectDestination(context, index);
+                            },
+                          );
+                        }),
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -117,7 +202,10 @@ class AppNavigationScaffold extends StatelessWidget {
                 alignment: Alignment.topCenter,
                 child: ConstrainedBox(
                   constraints: const BoxConstraints(maxWidth: 1100),
-                  child: child,
+                  child: AnimatedSwitcher(
+                    duration: const Duration(milliseconds: 300),
+                    child: child,
+                  ),
                 ),
               ),
             ),
@@ -129,22 +217,38 @@ class AppNavigationScaffold extends StatelessWidget {
           body: SafeArea(
             child: Row(
               children: [
-                NavigationRail(
-                  selectedIndex: currentIndex,
-                  extended: extendedRail,
-                  onDestinationSelected: (index) =>
-                      _onSelectDestination(context, index),
-                  labelType:
-                      extendedRail ? null : NavigationRailLabelType.all,
-                  destinations: _destinations
-                      .map(
-                        (destination) => NavigationRailDestination(
-                          icon: Icon(destination.icon),
-                          selectedIcon: Icon(destination.selectedIcon),
-                          label: Text(destination.label),
+                SizedBox(
+                  width: extendedRail ? 256 : 80,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      _buildLogo(context),
+                      Divider(
+                        height: 1,
+                        thickness: 1,
+                        color: Theme.of(context).dividerColor,
+                      ),
+                      Expanded(
+                        child: NavigationRail(
+                          selectedIndex: currentIndex,
+                          extended: extendedRail,
+                          onDestinationSelected: (index) =>
+                              _onSelectDestination(context, index),
+                          labelType:
+                              extendedRail ? null : NavigationRailLabelType.all,
+                          destinations: _destinations
+                              .map(
+                                (destination) => NavigationRailDestination(
+                                  icon: Icon(destination.icon),
+                                  selectedIcon: Icon(destination.selectedIcon),
+                                  label: Text(destination.label),
+                                ),
+                              )
+                              .toList(),
                         ),
-                      )
-                      .toList(),
+                      ),
+                    ],
+                  ),
                 ),
                 const VerticalDivider(width: 1),
                 Expanded(
@@ -164,7 +268,10 @@ class AppNavigationScaffold extends StatelessWidget {
                           alignment: Alignment.topCenter,
                           child: ConstrainedBox(
                             constraints: const BoxConstraints(maxWidth: 1200),
-                            child: child,
+                            child: AnimatedSwitcher(
+                              duration: const Duration(milliseconds: 300),
+                              child: child,
+                            ),
                           ),
                         ),
                       ),

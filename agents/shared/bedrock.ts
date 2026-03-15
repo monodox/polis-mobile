@@ -10,10 +10,26 @@ export class BedrockClient {
   private client: BedrockRuntimeClient;
 
   constructor() {
-    this.client = new BedrockRuntimeClient({
-      region: config.model.region,
-      credentials: fromEnv(),
-    });
+    // Check if bearer token is provided
+    const bearerToken = process.env.AWS_BEARER_TOKEN_BEDROCK;
+    
+    if (bearerToken) {
+      // Use bearer token authentication
+      this.client = new BedrockRuntimeClient({
+        region: config.model.region,
+        credentials: {
+          accessKeyId: 'BEARER_TOKEN',
+          secretAccessKey: 'BEARER_TOKEN',
+          sessionToken: bearerToken,
+        },
+      });
+    } else {
+      // Use standard AWS credentials
+      this.client = new BedrockRuntimeClient({
+        region: config.model.region,
+        credentials: fromEnv(),
+      });
+    }
   }
 
   async invokeModel(params: {
@@ -24,6 +40,11 @@ export class BedrockClient {
     maxTokens?: number;
   }) {
     const { modelId, messages, systemPrompt, temperature = 0.7, maxTokens = 2048 } = params;
+
+    // Ensure only Amazon Nova models are used
+    if (!modelId.includes('nova')) {
+      throw new Error(`Only Amazon Nova models are supported. Attempted to use: ${modelId}`);
+    }
 
     const body = {
       anthropic_version: 'bedrock-2023-05-31',
@@ -58,6 +79,11 @@ export class BedrockClient {
     maxTokens?: number;
   }) {
     const { modelId, messages, systemPrompt, temperature = 0.7, maxTokens = 2048 } = params;
+
+    // Ensure only Amazon Nova models are used
+    if (!modelId.includes('nova')) {
+      throw new Error(`Only Amazon Nova models are supported. Attempted to use: ${modelId}`);
+    }
 
     const body = {
       anthropic_version: 'bedrock-2023-05-31',

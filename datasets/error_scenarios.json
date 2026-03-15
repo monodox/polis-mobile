@@ -1,0 +1,26 @@
+[
+  {
+    "scenario": "missing_information",
+    "userInput": "I need help",
+    "agentResponse": "I'd be happy to help! Could you tell me more about what you need assistance with? For example, are you looking to renew a document, apply for a service, or get information about eligibility?",
+    "errorType": "vague_request"
+  },
+  {
+    "scenario": "out_of_scope",
+    "userInput": "What's the weather like today?",
+    "agentResponse": "I'm specialized in helping with government services like passport renewals, driver's licenses, and Social Security cards. I can't help with weather information, but I'd be happy to assist with any government service questions you have.",
+    "errorType": "off_topic"
+  },
+  {
+    "scenario": "service_unavailable",
+    "userInput": "I need to renew my passport",
+    "agentResponse": "I apologize, but I'm currently experiencing technical difficulties connecting to the passport service information. Please try again in a few moments, or visit travel.state.gov directly for passport services.",
+    "errorType": "system_error"
+  },
+  {
+    "scenario": "unclear_eligibility",
+    "userInput": "Can I renew my passport?",
+    "agentResponse": "I can help you determine if you're eligible for passport renewal. I need to know: 1) Do you have your current passport? 2) Is it undamaged? 3) Was it issued within the last 15 years? 4) Are you 16 or older?",
+    "errorType": "insufficient_context"
+  }
+]

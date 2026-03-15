@@ -1,0 +1,87 @@
+[
+  {
+    "id": "passport-renewal",
+    "name": "Passport Renewal",
+    "category": "Travel Documents",
+    "description": "Renew your passport for international travel",
+    "eligibility": [
+      "Current passport holder",
+      "Passport not damaged or mutilated",
+      "Over 16 years old",
+      "Passport issued within last 15 years"
+    ],
+    "requiredDocuments": [
+      "Current passport",
+      "Recent passport photo (2x2 inches)",
+      "Completed DS-82 form",
+      "Payment ($130 for passport book)"
+    ],
+    "processingTime": "6-8 weeks standard, 2-3 weeks expedited",
+    "cost": "$130 standard, $190 expedited",
+    "steps": [
+      "Complete Form DS-82 online or print and fill",
+      "Get a new passport photo taken",
+      "Calculate fees and prepare payment",
+      "Mail application with documents",
+      "Track application status online"
+    ],
+    "url": "https://travel.state.gov/passport",
+    "keywords": ["passport", "travel", "renewal", "international", "document"]
+  },
+  {
+    "id": "drivers-license",
+    "name": "Driver's License Application",
+    "category": "Identification",
+    "description": "Apply for or renew your driver's license",
+    "eligibility": [
+      "At least 16 years old",
+      "Passed written and driving tests",
+      "Valid Social Security Number",
+      "Proof of residency"
+    ],
+    "requiredDocuments": [
+      "Birth certificate or passport",
+      "Social Security card",
+      "Two proofs of residency",
+      "Completed application form"
+    ],
+    "processingTime": "Same day at DMV",
+    "cost": "$35-$90 depending on state",
+    "steps": [
+      "Study driver's manual",
+      "Pass written knowledge test",
+      "Complete driver's education course",
+      "Pass vision test",
+      "Pass road skills test",
+      "Pay fees and get license"
+    ],
+    "url": "https://www.dmv.org",
+    "keywords": ["license", "driving", "DMV", "identification", "vehicle"]
+  },
+  {
+    "id": "social-security-card",
+    "name": "Social Security Card Replacement",
+    "category": "Identification",
+    "description": "Replace lost or stolen Social Security card",
+    "eligibility": [
+      "U.S. citizen or legal resident",
+      "Age 18 or older",
+      "Limited to 3 replacements per year, 10 in lifetime"
+    ],
+    "requiredDocuments": [
+      "Proof of identity (driver's license, passport, or state ID)",
+      "Proof of citizenship or immigration status",
+      "Completed SS-5 form"
+    ],
+    "processingTime": "2 weeks by mail",
+    "cost": "Free",
+    "steps": [
+      "Complete Form SS-5",
+      "Gather identity documents",
+      "Submit online or mail to local office",
+      "Wait for card in mail"
+    ],
+    "url": "https://www.ssa.gov",
+    "keywords": ["social security", "SSN", "card", "replacement", "identity"]
+  }
+]

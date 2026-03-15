@@ -10,182 +10,33 @@ class DashboardPage extends StatelessWidget {
     return AppNavigationScaffold(
       title: 'Dashboard',
       currentIndex: 0,
-      child: ListView(
-        padding: const EdgeInsets.all(16),
-        children: const [
-          _StatusBanner(),
-          SizedBox(height: 16),
-          _InsightGrid(),
-          SizedBox(height: 16),
-          _SectionTitle('Recent Activity'),
-          SizedBox(height: 8),
-          _ActivityTile(
-            title: 'Voice assistant started',
-            subtitle: 'English session started 2 minutes ago',
-            icon: Icons.graphic_eq_rounded,
-          ),
-          _ActivityTile(
-            title: 'Eligibility guidance completed',
-            subtitle: 'Housing support flow answered successfully',
-            icon: Icons.check_circle_outline_rounded,
-          ),
-          _ActivityTile(
-            title: 'Document checklist shared',
-            subtitle: 'Passport renewal guidance sent to user',
-            icon: Icons.description_outlined,
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _StatusBanner extends StatelessWidget {
-  const _StatusBanner();
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: Colors.blueGrey.shade50,
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: Colors.blueGrey.shade100),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text('Assistant Status', style: Theme.of(context).textTheme.titleMedium),
-          const SizedBox(height: 8),
-          const Text(
-            'A simple overview page showing recent activity, system status, and quick insights about the assistant.',
-          ),
-          const SizedBox(height: 12),
-          Wrap(
-            spacing: 8,
-            runSpacing: 8,
-            children: const [
-              Chip(label: Text('System Online')),
-              Chip(label: Text('Voice Ready')),
-              Chip(label: Text('3 Active Sessions')),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _InsightGrid extends StatelessWidget {
-  const _InsightGrid();
-
-  @override
-  Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        if (constraints.maxWidth < 700) {
-          return const Column(
+      child: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(24),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              _InsightCard(
-                label: 'Requests Today',
-                value: '128',
-                icon: Icons.bolt_rounded,
+              Icon(
+                Icons.dashboard_outlined,
+                size: 64,
+                color: Theme.of(context).colorScheme.primary.withOpacity(0.5),
               ),
-              SizedBox(height: 12),
-              _InsightCard(
-                label: 'Avg. Response',
-                value: '1.4s',
-                icon: Icons.timer_outlined,
+              const SizedBox(height: 16),
+              Text(
+                'Dashboard',
+                style: Theme.of(context).textTheme.headlineSmall,
+              ),
+              const SizedBox(height: 8),
+              Text(
+                'System metrics and activity will appear here',
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
+                    ),
+                textAlign: TextAlign.center,
               ),
             ],
-          );
-        }
-
-        return const Row(
-          children: [
-            Expanded(
-              child: _InsightCard(
-                label: 'Requests Today',
-                value: '128',
-                icon: Icons.bolt_rounded,
-              ),
-            ),
-            SizedBox(width: 12),
-            Expanded(
-              child: _InsightCard(
-                label: 'Avg. Response',
-                value: '1.4s',
-                icon: Icons.timer_outlined,
-              ),
-            ),
-          ],
-        );
-      },
-    );
-  }
-}
-
-class _InsightCard extends StatelessWidget {
-  const _InsightCard({
-    required this.label,
-    required this.value,
-    required this.icon,
-  });
-
-  final String label;
-  final String value;
-  final IconData icon;
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Icon(icon),
-            const SizedBox(height: 12),
-            Text(value, style: Theme.of(context).textTheme.headlineSmall),
-            const SizedBox(height: 4),
-            Text(label),
-          ],
+          ),
         ),
-      ),
-    );
-  }
-}
-
-class _SectionTitle extends StatelessWidget {
-  const _SectionTitle(this.title);
-
-  final String title;
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(title, style: Theme.of(context).textTheme.titleMedium);
-  }
-}
-
-class _ActivityTile extends StatelessWidget {
-  const _ActivityTile({
-    required this.title,
-    required this.subtitle,
-    required this.icon,
-  });
-
-  final String title;
-  final String subtitle;
-  final IconData icon;
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      margin: const EdgeInsets.only(bottom: 8),
-      child: ListTile(
-        leading: Icon(icon),
-        title: Text(title),
-        subtitle: Text(subtitle),
       ),
     );
   }

@@ -1,0 +1,50 @@
+[
+  {
+    "query": "How do I renew my passport?",
+    "category": "passport",
+    "intent": "renewal_process",
+    "complexity": "simple"
+  },
+  {
+    "query": "What documents are needed for passport renewal?",
+    "category": "passport",
+    "intent": "document_requirements",
+    "complexity": "simple"
+  },
+  {
+    "query": "Can I renew my passport if it expired 5 years ago?",
+    "category": "passport",
+    "intent": "eligibility_check",
+    "complexity": "medium"
+  },
+  {
+    "query": "How much does it cost to renew a passport with expedited service?",
+    "category": "passport",
+    "intent": "cost_inquiry",
+    "complexity": "simple"
+  },
+  {
+    "query": "I need to travel in 2 weeks, can I get my passport renewed in time?",
+    "category": "passport",
+    "intent": "urgent_timeline",
+    "complexity": "medium"
+  },
+  {
+    "query": "How do I apply for a driver's license?",
+    "category": "drivers_license",
+    "intent": "application_process",
+    "complexity": "simple"
+  },
+  {
+    "query": "What's the difference between a driver's license and a state ID?",
+    "category": "identification",
+    "intent": "comparison",
+    "complexity": "medium"
+  },
+  {
+    "query": "I lost my Social Security card, how do I get a replacement?",
+    "category": "social_security",
+    "intent": "replacement_process",
+    "complexity": "simple"
+  }
+]

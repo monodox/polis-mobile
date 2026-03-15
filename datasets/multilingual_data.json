@@ -1,0 +1,22 @@
+[
+  {
+    "language": "en",
+    "query": "How do I renew my passport?",
+    "response": "To renew your passport, complete Form DS-82, provide a recent photo, your current passport, and $130 payment. Mail these documents or apply in person."
+  },
+  {
+    "language": "es",
+    "query": "¿Cómo renuevo mi pasaporte?",
+    "response": "Para renovar su pasaporte, complete el Formulario DS-82, proporcione una foto reciente, su pasaporte actual y un pago de $130. Envíe estos documentos por correo o solicite en persona."
+  },
+  {
+    "language": "fr",
+    "query": "Comment puis-je renouveler mon passeport?",
+    "response": "Pour renouveler votre passeport, remplissez le formulaire DS-82, fournissez une photo récente, votre passeport actuel et un paiement de 130 $. Envoyez ces documents par courrier ou faites une demande en personne."
+  },
+  {
+    "language": "zh",
+    "query": "我如何更新护照？",
+    "response": "要更新护照，请填写DS-82表格，提供近期照片、当前护照和130美元的付款。邮寄这些文件或亲自申请。"
+  }
+]

@@ -1,0 +1,18 @@
+{
+  "name": "polis-datasets",
+  "version": "1.0.0",
+  "description": "Synthetic datasets for Polis AI agents",
+  "type": "module",
+  "main": "data_loader.js",
+  "scripts": {
+    "example": "tsx example_usage.ts"
+  },
+  "keywords": ["datasets", "ai", "training-data"],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.6.0"
+  }
+}

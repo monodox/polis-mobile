@@ -1,0 +1,30 @@
+[
+  {
+    "intent": "passport_renewal",
+    "userMessage": "How do I renew my passport?",
+    "agentResponse": "To renew your passport, you'll need to complete Form DS-82, provide a recent passport photo, your current passport, and payment of $130. You can mail these documents or apply in person. Standard processing takes 6-8 weeks.",
+    "context": "general_inquiry",
+    "sentiment": "neutral"
+  },
+  {
+    "intent": "passport_renewal",
+    "userMessage": "What documents do I need for passport renewal?",
+    "agentResponse": "For passport renewal, you need: 1) Your current passport, 2) A recent 2x2 inch passport photo, 3) Completed Form DS-82, and 4) Payment of $130. Make sure your current passport is undamaged and was issued within the last 15 years.",
+    "context": "document_inquiry",
+    "sentiment": "neutral"
+  },
+  {
+    "intent": "passport_renewal",
+    "userMessage": "How long does passport renewal take?",
+    "agentResponse": "Standard passport renewal takes 6-8 weeks. If you need it faster, expedited service is available for an additional $60 and takes 2-3 weeks. For urgent travel, you can make an appointment at a passport agency.",
+    "context": "timeline_inquiry",
+    "sentiment": "neutral"
+  },
+  {
+    "intent": "drivers_license",
+    "userMessage": "How do I get a driver's license?",
+    "agentResponse": "To get a driver's license: 1) Study your state's driver manual, 2) Pass the written knowledge test, 3) Complete driver's education if required, 4) Pass a vision test, 5) Pass the road skills test, and 6) Pay the licensing fee. You'll need to bring proof of identity and residency.",
+    "context": "general_inquiry",
+    "sentiment": "neutral"
+  }
+]

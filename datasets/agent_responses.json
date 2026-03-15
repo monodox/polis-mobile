@@ -1,0 +1,27 @@
+[
+  {
+    "agentType": "chat",
+    "scenario": "greeting",
+    "response": "Hello! I'm Polis, your government services assistant. I can help you with passport renewals, driver's licenses, Social Security cards, and many other services. What can I help you with today?"
+  },
+  {
+    "agentType": "chat",
+    "scenario": "passport_inquiry",
+    "response": "I'd be happy to help you with passport services. Are you looking to renew an existing passport, apply for a new one, or do you have questions about the process?"
+  },
+  {
+    "agentType": "guidance",
+    "scenario": "step_by_step",
+    "response": "Let me walk you through this step by step:\n\nStep 1: [First action]\nStep 2: [Second action]\nStep 3: [Third action]\n\nWould you like more details about any of these steps?"
+  },
+  {
+    "agentType": "guidance",
+    "scenario": "eligibility_check",
+    "response": "Based on what you've told me, let me check your eligibility:\n\n✓ You meet requirement 1\n✓ You meet requirement 2\n✗ You may need to verify requirement 3\n\nWould you like help with the verification process?"
+  },
+  {
+    "agentType": "search",
+    "scenario": "service_found",
+    "response": "I found several services that match your request:\n\n1. [Service Name] - [Brief description]\n2. [Service Name] - [Brief description]\n\nWhich one would you like to learn more about?"
+  }
+]

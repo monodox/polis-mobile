@@ -13,8 +13,9 @@
     "resolveJsonModule": true,
     "declaration": true,
     "declarationMap": true,
-    "sourceMap": true
+    "sourceMap": true,
+    "types": ["node"]
   },
-  "include": ["**/*.ts"],
+  "include": ["**/*.ts", "../tests/agents-example.ts", "../tests/bedrock-example.ts"],
   "exclude": ["node_modules", "dist", "load-env.js"]
 }

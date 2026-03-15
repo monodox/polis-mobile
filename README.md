@@ -87,21 +87,43 @@ polis-mobile/
 
 ## Getting Started
 
+### Quick Start (Current Development)
+
+**⚠️ Database Schema Update Required**
+
+If you're continuing from a previous setup, the database schema has been updated. Follow the quick fix:
+
+1. **See [QUICK_START.md](QUICK_START.md) for step-by-step instructions**
+2. Run `supabase/quick-fix.sql` in Supabase SQL Editor
+3. Restart the agents server: `cd agents && npm run server`
+4. Refresh the Flutter app
+
 ### Prerequisites
 
 - Flutter SDK (stable)
 - Dart SDK (comes with Flutter)
 - Android Studio/Xcode (for mobile targets)
+- Node.js 18+ (for TypeScript agents)
+- Supabase account
+- AWS account with Bedrock access
 
 ### Setup
 
 1. Install dependencies:
 	- `flutter pub get`
-2. Run on web:
-	- `flutter run -d chrome`
-3. Run on another target:
-	- `flutter devices`
-	- `flutter run -d <device-id>`
+	- `cd agents && npm install`
+2. Configure environment:
+	- Copy `.env.example` to `.env.local`
+	- Add your Supabase URL and anon key
+	- Add your AWS credentials
+3. Setup database:
+	- Run `supabase/quick-fix.sql` in Supabase SQL Editor
+	- See `supabase/README.md` for details
+4. Start agents server:
+	- `cd agents && npm run server`
+5. Run Flutter app:
+	- `flutter run -d chrome` (web)
+	- `flutter run -d <device-id>` (mobile)
 
 ## Environment
 
