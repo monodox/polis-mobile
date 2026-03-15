@@ -28,7 +28,7 @@ async function main() {
     'I need to renew my passport. What do I need to do?',
     context
   );
-  console.log('Response:', searchResult.data?.response);
+  console.log('Response:', searchResult.data?.response?.replace(/[\r\n]/g, ' '));
   console.log('\n---\n');
 
   // Example 2: Voice interaction with Nova Sonic 2
@@ -37,7 +37,7 @@ async function main() {
     'base64_encoded_audio_data_here',
     context
   );
-  console.log('Voice Response:', voiceResult.data?.response);
+  console.log('Voice Response:', voiceResult.data?.response?.replace(/[\r\n]/g, ' '));
   console.log('\n---\n');
 
   // Example 3: Browser automation with Nova Act
@@ -46,7 +46,7 @@ async function main() {
     'Fill out the passport renewal form at travel.state.gov with my information',
     context
   );
-  console.log('Automation Response:', automationResult.data?.response);
+  console.log('Automation Response:', automationResult.data?.response?.replace(/[\r\n]/g, ' '));
   console.log('\n---\n');
 
   // Example 4: Get guidance
@@ -55,7 +55,7 @@ async function main() {
     'Am I eligible for housing assistance?',
     context
   );
-  console.log('Response:', guidanceResult.data?.response);
+  console.log('Response:', guidanceResult.data?.response?.replace(/[\r\n]/g, ' '));
   console.log('\n---\n');
 
   // Example 5: Extract data with Nova Act
@@ -65,14 +65,14 @@ async function main() {
     ['eligibility', 'required_documents', 'processing_time'],
     context
   );
-  console.log('Extracted Data:', extractionResult.data);
+  console.log('Extracted Data:', JSON.stringify(extractionResult.data)?.replace(/[\r\n]/g, ' '));
   console.log('\n---\n');
 
   // Show conversation history
   console.log('💾 Conversation History:');
   const history = polis.getMemory().getContext(context.sessionId);
   history.forEach((msg, i) => {
-    console.log(`${i + 1}. [${msg.role}]: ${msg.content.substring(0, 60)}...`);
+    console.log(`${i + 1}. [${msg.role}]: ${msg.content.substring(0, 60).replace(/[\r\n]/g, ' ')}...`);
   });
 
   console.log('\n✅ Example completed!');

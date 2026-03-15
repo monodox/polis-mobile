@@ -37,7 +37,8 @@ const generateVoiceResponse = tool({
   callback: (input) => {
     // Nova Sonic 2 generates natural-sounding speech
     return JSON.stringify({
-      audioUrl: 'https://s3.amazonaws.com/polis-audio/response.mp3',
+      // Use environment variable for S3 bucket to prevent bucket sniping
+      audioUrl: `https://s3.amazonaws.com/${process.env.POLIS_AUDIO_BUCKET || 'polis-audio-prod'}/response.mp3`,
       duration: input.text.length * 0.05, // Approximate duration
       format: 'mp3',
       sampleRate: 24000,

@@ -74,7 +74,9 @@ export class PolisOrchestrator {
   }
 
   async executeAutomation(task: string, context: AgentContext): Promise<AgentResponse> {
-    return this.automation.executeWorkflow(task, context);
+    // Sanitize task input to prevent code injection
+    const sanitizedTask = task.replace(/[`${}\\]/g, '');
+    return this.automation.executeWorkflow(sanitizedTask, context);
   }
 
   getMemory() {

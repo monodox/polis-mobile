@@ -176,15 +176,20 @@ Always ensure accuracy and escalate to human supervisor when uncertain.`,
     formData: Record<string, string>,
     context: AgentContext
   ): Promise<AgentResponse> {
+    // Sanitize URL to prevent code injection
+    const sanitizedUrl = formUrl.replace(/[`${}\\]/g, '');
     return this.executeWorkflow(
-      `Fill the form at ${formUrl} with the provided data`,
+      `Fill the form at ${sanitizedUrl} with the provided data`,
       context
     );
   }
 
   async extractData(url: string, dataPoints: string[], context: AgentContext): Promise<AgentResponse> {
+    // Sanitize inputs to prevent code injection
+    const sanitizedUrl = url.replace(/[`${}\\]/g, '');
+    const sanitizedDataPoints = dataPoints.map(dp => dp.replace(/[`${}\\]/g, ''));
     return this.executeWorkflow(
-      `Extract ${dataPoints.join(', ')} from ${url}`,
+      `Extract ${sanitizedDataPoints.join(', ')} from ${sanitizedUrl}`,
       context
     );
   }
