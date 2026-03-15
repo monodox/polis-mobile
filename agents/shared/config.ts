@@ -1,11 +1,27 @@
 // Shared configuration for all agents
 export const config = {
-  // Model configuration
+  // Model configuration - Using Amazon Nova models
   model: {
     provider: 'bedrock',
-    modelId: 'global.anthropic.claude-sonnet-4-5-20250929-v1:0',
+    // Nova Pro for general agents
+    modelId: 'us.amazon.nova-pro-v1:0',
     region: process.env.AWS_REGION || 'us-east-1',
     temperature: 0.7,
+  },
+
+  // Nova Sonic 2 for voice interactions
+  voice: {
+    modelId: 'us.amazon.nova-sonic-v2:0',
+    region: process.env.AWS_REGION || 'us-east-1',
+    temperature: 0.8,
+  },
+
+  // Nova Act for browser automation
+  act: {
+    modelId: 'us.amazon.nova-act-v1:0',
+    region: 'us-east-1', // Nova Act only available in us-east-1
+    maxSteps: 50,
+    timeout: 120000, // 2 minutes for complex workflows
   },
 
   // Agent behavior

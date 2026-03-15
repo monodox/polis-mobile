@@ -6,6 +6,7 @@ export { SearchAgent } from './search/index.js';
 export { GuidanceAgent } from './guidance/index.js';
 export { MemoryAgent } from './memory/index.js';
 export { SafetyAgent } from './safety/index.js';
+export { AutomationAgent } from './automation/index.js';
 
 // Export shared types and config
 export * from './shared/types.js';
@@ -19,6 +20,7 @@ import { GuidanceAgent } from './guidance/index.js';
 import { MemoryAgent } from './memory/index.js';
 import { SafetyAgent } from './safety/index.js';
 import { VoiceAgent } from './voice/index.js';
+import { AutomationAgent } from './automation/index.js';
 import type { AgentContext, AgentResponse } from './shared/types.js';
 
 export class PolisOrchestrator {
@@ -29,6 +31,7 @@ export class PolisOrchestrator {
   private memory: MemoryAgent;
   private safety: SafetyAgent;
   private voice: VoiceAgent;
+  private automation: AutomationAgent;
 
   constructor() {
     this.core = new CoreAgent();
@@ -38,6 +41,7 @@ export class PolisOrchestrator {
     this.memory = new MemoryAgent();
     this.safety = new SafetyAgent();
     this.voice = new VoiceAgent();
+    this.automation = new AutomationAgent();
   }
 
   async processMessage(message: string, context: AgentContext): Promise<AgentResponse> {
@@ -65,7 +69,23 @@ export class PolisOrchestrator {
     return response;
   }
 
+  async processVoice(audioData: string, context: AgentContext): Promise<AgentResponse> {
+    return this.voice.processVoice(audioData, context);
+  }
+
+  async executeAutomation(task: string, context: AgentContext): Promise<AgentResponse> {
+    return this.automation.executeWorkflow(task, context);
+  }
+
   getMemory() {
     return this.memory;
+  }
+
+  getAutomation() {
+    return this.automation;
+  }
+
+  getVoice() {
+    return this.voice;
   }
 }
