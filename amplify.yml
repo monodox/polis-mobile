@@ -1,0 +1,18 @@
+version: 1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - flutter config --enable-web
+        - flutter pub get
+    build:
+      commands:
+        - flutter build web --release --web-renderer canvaskit
+  artifacts:
+    baseDirectory: build/web
+    files:
+      - '**/*'
+  cache:
+    paths:
+      - .dart_tool/**/*
+      - .packages
