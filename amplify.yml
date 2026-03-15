@@ -11,7 +11,7 @@ frontend:
     build:
       commands:
         - export PATH="$PATH:`pwd`/flutter/bin"
-        - flutter build web --release --web-renderer canvaskit
+        - flutter build web --release
   artifacts:
     baseDirectory: build/web
     files:
