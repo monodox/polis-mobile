@@ -1,7 +1,7 @@
 {
   "name": "polis-agents",
   "version": "1.0.0",
-  "description": "AI agents powered by Amazon Nova models for Polis government services assistant",
+  "description": "AI agents powered by Amazon Nova models via Bedrock API for Polis government services assistant",
   "type": "module",
   "main": "dist/index.js",
   "scripts": {
@@ -11,18 +11,19 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
-    "strands",
     "agents",
     "ai",
     "government-services",
     "amazon-nova",
+    "bedrock",
     "nova-act",
     "nova-sonic"
   ],
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@strands-agents/sdk": "^1.0.0",
+    "@aws-sdk/client-bedrock-runtime": "^3.700.0",
+    "@aws-sdk/credential-providers": "^3.700.0",
     "zod": "^3.23.8"
   },
   "devDependencies": {

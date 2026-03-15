@@ -1,27 +1,22 @@
 # Polis Agents
 
-TypeScript-based AI agents powered by Strands Agents SDK and Amazon Nova models for the Polis government services assistant.
+TypeScript-based AI agents powered by Amazon Bedrock API and Nova models for the Polis government services assistant.
 
-## Amazon Nova Models
+## Amazon Nova Models via Bedrock API
 
-This system leverages three Amazon Nova models:
+This system uses the AWS Bedrock Runtime API to access Amazon Nova models:
 
 - **Nova Pro** (`us.amazon.nova-pro-v1:0`) - Powers general conversation, search, and guidance agents
 - **Nova Sonic 2** (`us.amazon.nova-sonic-v2:0`) - Handles real-time voice transcription and speech synthesis
 - **Nova Act** (`us.amazon.nova-act-v1:0`) - Automates browser-based workflows and form filling
 
-## Architecture
+## Why Bedrock API?
 
-The system consists of 8 specialized agents:
-
-- **Core**: Orchestrator that routes requests to appropriate agents (Nova Pro)
-- **Chat**: Handles natural language conversations (Nova Pro)
-- **Voice**: Processes speech input/output for voice interactions (Nova Sonic 2)
-- **Search**: Retrieves government service information (Nova Pro)
-- **Guidance**: Provides eligibility and document guidance (Nova Pro)
-- **Memory**: Stores conversation context and history (Nova Pro)
-- **Safety**: Ensures responses are safe and compliant (Nova Pro)
-- **Automation**: Automates browser workflows and form filling (Nova Act)
+- Direct API access without additional frameworks
+- Full control over requests and responses
+- Streaming support for real-time interactions
+- Native AWS SDK integration
+- Lower overhead and dependencies
 
 ## Setup
 
@@ -37,7 +32,6 @@ npm install
 cp ../.env.example ../.env.local
 
 # Edit .env.local with your AWS credentials
-# The agents will automatically read from the root .env.local
 ```
 
 Required environment variables:
@@ -49,21 +43,53 @@ Optional environment variables:
 - `NOVA_PRO_MODEL_ID` - Override Nova Pro model ID
 - `NOVA_SONIC_MODEL_ID` - Override Nova Sonic 2 model ID
 - `NOVA_ACT_MODEL_ID` - Override Nova Act model ID
-- `MAX_ITERATIONS`, `TIMEOUT_MS`, `MAX_MESSAGES` - Agent behavior tuning
 
 Note: Nova Act is only available in `us-east-1` region.
 
-3. Run the example:
+3. Run the Bedrock API example:
+```bash
+npx tsx bedrock-example.ts
+```
+
+Or run the full agent example:
 ```bash
 npm run dev
 ```
 
-Or run directly:
-```bash
-npx tsx example.ts
+## Usage
+
+### Direct Bedrock API
+
+```typescript
+import { bedrockClient } from './shared/bedrock.js';
+
+// Simple conversation
+const response = await bedrockClient.invokeModel({
+  modelId: 'us.amazon.nova-pro-v1:0',
+  messages: [
+    { role: 'user', content: 'How do I renew my passport?' }
+  ],
+  systemPrompt: 'You are a helpful assistant.',
+  temperature: 0.7,
+  maxTokens: 500,
+});
+
+console.log(response.content);
+
+// Streaming response
+for await (const chunk of bedrockClient.invokeModelStream({
+  modelId: 'us.amazon.nova-pro-v1:0',
+  messages: [
+    { role: 'user', content: 'Tell me about housing assistance.' }
+  ],
+})) {
+  if (chunk.type === 'content') {
+    process.stdout.write(chunk.text);
+  }
+}
 ```
 
-## Usage
+### Using Agent Orchestrator
 
 ```typescript
 import { PolisOrchestrator } from './index.js';
