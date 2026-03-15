@@ -6,8 +6,7 @@ frontend:
         - rm -rf flutter
         - git clone https://github.com/flutter/flutter.git -b stable --depth 1
         - export PATH="$PATH:`pwd`/flutter/bin"
-        - flutter doctor -v
-        - flutter config --enable-web
+        - flutter config --enable-web --no-analytics
         - flutter pub get
     build:
       commands:
