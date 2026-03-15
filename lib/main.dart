@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'core/supabase.dart';
 import 'core/theme.dart';
 import 'core/theme_provider.dart';
 import 'pages/app/agents.dart';
@@ -15,7 +16,12 @@ import 'pages/legal/cookies.dart';
 import 'pages/legal/privacy.dart';
 import 'pages/legal/terms.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  
+  // Initialize Supabase
+  await SupabaseConfig.initialize();
+  
   runApp(
     ChangeNotifierProvider(
       create: (_) => ThemeProvider(),
